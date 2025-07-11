@@ -1,10 +1,14 @@
-<!DOCTYPE html>
+<!DOCTYPE html> 
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Simulasi Android</title>
   <style>
+    html, body {
+      overflow-x: hidden;
+    }
+
     body {
       background-color: #1a1a1a;
       font-family: sans-serif;
@@ -268,6 +272,7 @@
       <div class="section-title">Album Saya</div>
 
       <div class="album-grid">
+        <!-- Gambar album tetap sama seperti sebelumnya -->
         <div class="album"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQKNhItlQ274kjCt0n16NIcxyhyA4MSbQqKKnRYaKkJZOp7099k&s/120x90?text=Semua+Foto"><div class="album-name">Semua foto<br><small>185</small></div></div>
         <div class="album"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS7_DHwc160-6GnunZsLNpBwy4XgsAzgedBog&s/120x90?text=Gambar"><div class="album-name">Gambar<br><small>72</small></div></div>
         <div class="album"><img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSHgl2kMQle7YqTBR7kPh8bEEqeAwdN9TT5xQ&s/120x90?text=Rekaman"><div class="album-name">Rekaman<br><small>3</small></div></div>
@@ -304,23 +309,20 @@
         alert("Masukkan nomor yang valid!");
         return;
       }
-  
-      // Reset terminal dan loading
+
       document.getElementById("terminal").style.display = "none";
       document.getElementById("terminal").innerHTML = "";
       document.getElementById("loadingBar").style.display = "block";
       document.getElementById("loadingProgress").style.width = "0%";
-  
-      // Animasi loading bar
+
       setTimeout(() => {
         document.getElementById("loadingProgress").style.width = "100%";
       }, 50);
-  
-      // Setelah 2 detik, tampilkan terminal dan phone
+
       setTimeout(() => {
         document.getElementById("formContainer").style.display = "none";
         document.getElementById("loadingBar").style.display = "none";
-  
+
         const terminal = document.getElementById("terminal");
         const logLines = [
           "> Memulai proses injeksi...",
@@ -331,7 +333,7 @@
           "> Validasi lisensi...",
           `> Injeksi berhasil untuk: ${target}`
         ];
-  
+
         terminal.style.display = "block";
         let index = 0;
         const interval = setInterval(() => {
@@ -342,24 +344,23 @@
             index++;
           } else {
             clearInterval(interval);
-            // Tampilkan UI HP setelah log selesai
             document.getElementById("phoneUI").style.display = "flex";
           }
         }, 400);
       }, 2000);
     }
-  
+
     function updateClock() {
       const now = new Date();
       const h = now.getHours().toString().padStart(2, '0');
       const m = now.getMinutes().toString().padStart(2, '0');
       document.getElementById("clock").textContent = `${h}:${m}`;
     }
-  
+
     function showModal() {
       document.getElementById("licenseModal").style.display = "block";
     }
-  
+
     function checkKey() {
       const input = document.getElementById("keyInput").value.trim();
       if (input === "1234-5678") {
@@ -370,13 +371,13 @@
         alert("Lisensi salah.");
       }
     }
-  
+
     updateClock();
     setInterval(updateClock, 60000);
     window.onload = () => {
       document.getElementById("formContainer").style.display = "flex";
     };
   </script>
-  
+
 </body>
 </html>
